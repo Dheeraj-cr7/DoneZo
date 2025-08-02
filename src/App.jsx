@@ -14,7 +14,7 @@ function App() {
 
   //  defining the methods taken from context.
   const addTodo = (todo) => {
-    console.log("New todo : ", todo)
+    // console.log("New todo : ", todo)
     setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev])
   }
 
@@ -38,7 +38,7 @@ function App() {
   }
 
   const toggleComplete = (id) => {
-    
+
     setTodos((prev) => prev.map(prevTodo => prevTodo.id === id ? { ...prevTodo, isCompleted: !prevTodo.isCompleted } : prevTodo))
     // {...prevTodo, isCompleted: !prevTodo.iscompleted} : prevTodo
     // {} <- iske andar todo obj ki har ek value access krliya or 
@@ -57,7 +57,7 @@ function App() {
 
   // to set items
   useEffect(() => {
-    console.log('Setting todos to local storage: ', todos)
+    // console.log('Setting todos to local storage: ', todos)
     localStorage.setItem("todos", JSON.stringify(todos))
   }, [todos])
   // har todo add hone pr setItem update hoga isliye todos dependency array me hai
@@ -100,13 +100,16 @@ function App() {
 
             <div className="flex flex-col gap-3 sm:gap-4">
               {todos.map((items) => (
-                <div  key={items.id} className="w-full animate-fade">
+                <div key={items.id} className="w-full animate-fade">
                   <TodoItem todo={items} />
                 </div>
               ))}
             </div>
           </div>
         </div>
+        <footer className=" py-4 text-center text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-blue-100 dark:bg-gray-900 transition-colors duration-300">
+          &copy; {new Date().getFullYear()} <span className="font-semibold">Dheeraj</span>. All rights reserved.
+        </footer>
       </TodoContextProvider>
     </ThemeProvider>
   );
